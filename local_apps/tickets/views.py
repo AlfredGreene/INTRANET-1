@@ -10,6 +10,7 @@ import datetime
 
 @login_required
 def ticket(request):
+
     return render(request, 'frontend/ticket.html', {
         'title': 'tickets',
     })
