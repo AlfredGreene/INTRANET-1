@@ -1,6 +1,6 @@
 from intra.settings.base import *
 
-STATICFILES_DIRS = ('')
+STATICFILES_DIRS = ''
 
 STATIC_ROOT = os.path.abspath(os.path.join(os.path.join(BASE_DIR,os.pardir),'staticfiles')),
 
