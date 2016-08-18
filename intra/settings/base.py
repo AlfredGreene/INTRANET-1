@@ -115,8 +115,8 @@ EMAIL_USE_TLS = config("INTRA_EMAIL_USE_TLS", cast=bool)
 """ Security Conf           """
 # AUTH_USER_MODEL = 'local_apps.intra_profile.User'
 AUTHENTICATION_BACKENDS =(
-                            'local_apps.profiles.EmailBackend.EmailBackend',
                             'django.contrib.auth.backends.ModelBackend',
+                            'local_apps.profiles.EmailBackend.EmailBackend',
                         )
 LOGIN_URL = '/entrar/'
 LOGIN_REDIRECT_URL = '/'
