@@ -1,13 +1,14 @@
 from decouple import config
-import pypyodbc
+import pyodbc
 import datetime
 import json
 
 def bwt_report(args,kwargs):
 
     def sql_conn(arg):
+        
         conn = config('TOPSHOP_BWT')
-        connection = pypyodbc.connect(conn)
+        connection = pyodbc.connect(conn)
         cursor = connection.cursor()
         SQLCommand =(arg)
         cursor.execute(SQLCommand)
