@@ -4,5 +4,5 @@ from django.contrib import admin
 from local_apps.inventory import views as inventory_views
 
 urlpatterns = [
-    # url(r'^$', inventory_views.home, name="Home"),
+    url(r'^$', inventory_views.home, name="Inventario"),
 ]

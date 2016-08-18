@@ -44,7 +44,7 @@
                     <li class=""><a href="{% url 'Dashboard' %}">DASHBOARD</a></li>
                         {% for group in user.groups.all %}
                             {% if group.name == 'IT' %}
-                                <li class=""><a href="{% url 'Inventory' %}">INVENTARIO</a></li>
+                                <li class=""><a href="{% url 'Inventario' %}">INVENTARIO</a></li>
                             {% endif %}
                         {% endfor %}
 
