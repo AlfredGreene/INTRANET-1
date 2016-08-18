@@ -59,9 +59,10 @@ __pycache__
 migrations
 */migrations
 */*/migrations
-*/*/*/migrations
+*/*/*/*/*migrations
 
-.pyc
-*/.pyc
-*/*/.pyc
-*/*/*/.pyc
+*.pyc
+*/*.pyc
+*/*/*.pyc
+*/*/*/*.pyc
+*/*/*/*/*.pyc

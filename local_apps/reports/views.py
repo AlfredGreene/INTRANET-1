@@ -17,11 +17,13 @@ def report(request):
         'title': 'Reportes',
     })
 
+
 def topshop_reports(request):
 
     return render(request, 'reports/topshop/reports-topshop.html', {
         'title': 'Reportes',
     })
+
 
 def report_bwt(request):
 
@@ -38,6 +40,7 @@ def report_bwt(request):
     # # return HttpResponse(report, content_type='application/json')
     # return render(request, , context)
 
+@login_required
 def json_report_bwt(request):
 
     report = json.loads(bwt.bwt_report('2016-07-03', '2016-07-09'))
