@@ -1,0 +1,128 @@
+*{
+    font-size: 18px;
+}
+
+body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+}
+
+/* Custom */
+
+.phx_wrapper_box{
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.phx_navbar{
+    border-top: solid #000;
+}
+
+.phx_section{
+    flex: 1;
+    margin-top: 55px;
+    /*background-color: red;*/
+    border-top: rgba(113, 130, 134, 0.06) solid .1px;
+}
+
+.phx_index_section_row{
+    padding: 30px 0;
+    overflow: hidden;
+}
+
+.phx_panel{
+    border-radius: 0;
+    box-shadow: 0 5px 5px rgba(0,0,0,.15);
+}
+
+.phx_footer{
+    padding: 15px 0;
+}
+
+.phx_forms{
+    margin-top: 20%;
+}
+.phx_form_wrapper{
+
+}
+
+/* helpers */
+
+.phx_bg_gray{
+    background-color: #7f8c8d;
+    color: #ecf0f1;
+}
+
+.phx_bg_gray_dark{
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+.phx_grafica, .phx_dashboar_icon {
+    font-size: 200px;
+}
+
+.phx_grafica{
+    color: #2980b9;
+}
+
+.phx_dashboar_icon{
+    color: #2c3e50;
+}
+
+.phx_bienvenido_icon{
+    font-size: 3rem;
+    color: #2980b9;
+}
+
+/* Bootstrap */
+
+@media screen and (max-width: 768px) {
+    .col-sm-4 {
+        text-align: center;
+        margin: 25px 0;
+    }
+}
+
+.navbar-default .navbar-collapse, .navbar-default .navbar-form{
+    background-color: #fff;
+    border-color: #fff;
+}
+
+.navbar-default .navbar-toggle {
+    border-color:rgba(231, 231, 231, 0);
+}
+
+.jumbotron {
+    font-family: Montserrat, sans-serif;
+}
+
+.navbar {
+    font-family: Montserrat, sans-serif;
+}
+.navbar-default {
+    background-color: rgba(255, 255, 255, 1);
+    border-color: rgba(231, 231, 231, 0);
+}
+.panel-default>.panel-heading {
+    color: #333;
+    background-color: rgba(0,0,0,0);
+    border-color: rgba(0,0,0,0);
+    padding: 15px 0;
+}
+.panel-default>.panel-heading>h2{
+    font-weight: bolder;
+    font-size: 18px;
+    color: #7f8c8d;
+}
+.container-fluid {
+    margin-left: 0;
+    margin-right: 0;
+}
+#TOTAL{
+    background-color:#CCFF90;
+}
+#table-head-report-department tr:last-child{
+    background-color:#E6EE9C;
+}

@@ -1,0 +1,81 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Metas -->
+    <meta name="Description" content="Intranet grupo PHOENIX WORLD TRADE">
+    <meta name="Author" content="Josmer Hernandez">
+    <title>INTRANET | PHOENIX WORLD TRADE</title>
+    <!-- Links -->
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'base/css/foundation.min.css' %}">
+    <link rel="stylesheet" href="{% static 'base/css/app.css' %}">
+    <!-- Custom Styles -->
+    {% block assets %}
+    {% endblock %}
+</head>
+
+<body>
+
+    <nav>
+        <div class="container">
+
+            <div class="title-bar" data-responsive-toggle="phx_header_menu" data-hide-for="medium">
+                <button class="menu-icon" type="button" data-toggle></button>
+                <div class="title-bar-title" href="{% url 'Home' %}">INTRA</div>
+            </div>
+
+            <div class="top-bar" id="phx_header_menu">
+
+                <div class="top-bar-left">
+                    <ul class="menu" data-dropdown-menu>
+                        <li class="menu-text">INTRANET</li>
+                    </ul>
+                </div>
+
+                <div class="top-bar-right">
+                    <ul class="menu">
+                        {% if user.is_anonymous %}
+                        <li><a href="{% url 'Login' %}">ENTRAR</a></li>
+                        <li><a href="{% url 'Register' %}">REGISTRARSE</a></li>
+                        {% else %}
+                        <li class=""><a href="{% url 'Dashboard' %}">DASHBOARD</a></li>
+                        {% for group in user.groups.all %}
+                            {% if group.name == 'IT' %}
+                                <li class=""><a href="{% url 'Dashboard' %}">INVENTARIO</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        <li class=""><a href="{% url 'Report' %}">REPORTES</a></li>
+                        <li class=""><a href="{% url 'Ticket' %}">TICKETS</a></li>
+                        <li><a href="{% url 'Logout' %}">SALIR</a></li>
+                        <li class=""><a href="{% url 'Dashboard' %}"> | {{ user.first_name | upper }}</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+    </nav>
+
+    <section>
+        {% block content %}
+        <!-- Comentario  -->
+        {% endblock %}
+    </section>
+
+    <footer >
+
+    </footer>
+    <!-- JS -->
+    <script src="{% static 'base/js/vendor/jquery.js' %}"></script>
+    <script src="{% static 'base/js/vendor/what-input.js' %}"></script>
+    <script src="{% static 'base/js/vendor/foundation.min.js' %}"></script>
+    <script src="{% static 'base/js/app.js' %}"></script>
+    <!-- Custom JS -->
+</body>
+</html>

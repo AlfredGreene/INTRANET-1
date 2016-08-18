@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="jumbotron text-center">
+    <h2>Bienvenido {{user.first_name }} <span class="glyphicon glyphicon-home phx_bienvenido_icon"></span></h2>
+    <p>Este es un rincón de tecnología, hecho a tu medida</p>
+</div>
+<div class="container-fluid text-center">
+    <!-- Secion 1 -->
+    <div class="row phx_index_section_row">
+        <div class="col-sm-8 col-lg-6 text-justify">
+            <h3>Reportes</h3>
+            <h4>Ventas, comisiones y mucho más.</h4>
+            <p>
+                Los reportes se irán subiendo según sean tus necesidades.
+                <br>
+                Sin embargo, puedes recurrir al sistema de <a href="{% url 'Ticket' %}">Tickets</a> para solicitar nuevos reportes ajustados a tus necesidades.
+            </p>
+        </div>
+        <div class="col-sm-4 col-lg-6">
+            <span class="glyphicon glyphicon-signal phx_grafica"></span>
+        </div>
+    </div>
+    <!-- Section 2 -->
+    <div class="row phx_bg_gray phx_index_section_row">
+        <div class="col-sm-4 col-lg-6">
+            <span class="glyphicon glyphicon-cog phx_dashboar_icon"></span>
+        </div>
+        <div class="col-sm-8 col-lg-6 text-justify">
+            <h3>Dashboard</h3>
+            <h4>Organiza tu perfil</h4>
+            <p>
+                En el <strong><a href="{% url 'Dashboard' %}">Dashboard</a></strong> podrás manejar la información que se visualiza en tu perfil y el contenido donde seas mencionado.
+            </p>
+        </div>
+    </div>
+    <!-- Section 3 -->
+    <div class="row phx_index_section_row">
+        <div class="col-sm-8 col-lg-6 text-justify">
+            <h3>Helpdesk</h3>
+            <h4>Soporte a tus problemas</h4>
+            <p>
+                La aplicación de <stron><a href="{% url 'Ticket' %}">Tickets</a></stron>, permitirá crear un enlace directo al equipo de soporte.
+                <br>
+                Atendiendo de una manera rápida y eficaz tus peticiones.
+            </p>
+        </div>
+        <div class="col-sm-4 col-lg-6">
+            <span class="glyphicon glyphicon-envelope phx_grafica"></span>
+        </div>
+    </di
+</div>
+<hr>
+{% endblock %}

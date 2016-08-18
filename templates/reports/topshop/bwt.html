@@ -1,0 +1,223 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <h1>BWT-Branches Total Weekly Sales/Space/Stock</h1>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12 " id="dvData">
+            <table id="table" class="table table-responsive table-bordered table-condensed table-hover" style="text-align:center" border="1" >
+                <thead id='table-head-report' >
+                    <tr style="text-align:center">
+                        <th rowspan="2">Department</th>
+                        <th colspan="11" >SALES PERFORMANCE</th>
+                        <th colspan="1" >TRADING</th>
+                        <th colspan="6" >MIXES</th>
+                        <th colspan="3" >SPACE</th>
+                        <th colspan="4" >STOCKS</th>
+                    </tr>
+                    <tr style="text-align:center" >
+                        <th>Act. Br.units</th>
+                        <th>Act. Br.</th>
+                        <th>v.Pln Br.</th>
+                        <th>v.Pln Br.%</th>
+                        <th>v.Pln Market %</th>
+                        <th>v.LW Br.</th>
+                        <th>v.LW Br.%</th>
+                        <th>v.LW Market %</th>
+                        <th>v.LY Br.</th>
+                        <th>v.LY Br.%</th>
+                        <th>v.LY Market %</th>
+                        <th>Week %Lift Reqd</th>
+                        <th>Br.Sls %</th>
+                        <th>Br.Stk %</th>
+                        <th>Br.Space %</th>
+                        <th>Market Sls %</th>
+                        <th>Market Stk %</th>
+                        <th>Market Space %</th>
+                        <th>Act. FT</th>
+                        <th>Br./FT</th>
+                        <th>Market /FT</th>
+                        <th>Act. Br.units</th>
+                        <th>Act. Br.</th>
+                        <th>Act Br.Cover	</th>
+                        <th>Act Market Cover</th>
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+
+</div>
+
+<a href="#" class="export">Export Table data into Excel</a>
+<div id="show-data"></div>
+{% endblock %}
+
+
+{% block js %}
+<script>
+    $(document).ready(function () {
+    /* global Variables */
+    var url = '{% url "TopshopJsonBWT" %}';
+    // $('#get-data').click(function () {
+
+        // var showData = $('#show-data');
+
+        $.getJSON( url, function( data ) {
+
+            console.log(data);
+            // $.each( data, function( department ) {
+            //     // console.log(department);
+            //
+            //     $.each( data[department], function( sub_department ) {
+            //         // console.log(sub_department);
+            //
+            //         $.each( data[department][sub_department], function( report ) {
+            //
+            //             var datos = data[department][sub_department];
+            //             // console.log(report);
+            //             // report.push("<td id='" + report + "'>" + datos + "</td>");
+            //
+            //         }); /* report */
+            //
+            //         // sub_department.push("<td id='" + sub_department + "'>" + sub_department + "</td>" );
+            //     });/* sub_department */
+            //
+            //     departments.push("<tr id='" + department + "'>" + department + "</tr>");
+            // });
+
+            /***/
+            var department = [];
+            var departments = [];
+            for (departments in data) {
+
+                /* Mostrar datos */
+                // console.log(departments);
+                // console.log(data[departments]);
+                /**/
+                var sub_department = [];
+                var sub_departments = [];
+
+                for (sub_department in data[departments]){
+
+                    /* Mostrar datos */
+                    // console.log(sub_department);
+                    // console.log(data[departments][sub_department]);
+                    /**/
+                    // console.log(sub_department);
+                    var report = [];
+                    var reports = [];
+
+                    for (report in data[departments][sub_department] ){
+
+                        /* Mostrar datos */
+                        // console.log(report+':'+data[departments][sub_department][report]);
+                        // console.log();
+                        /**/
+                        reports += "<td id='" + report + "'>" + data[departments][sub_department][report]  + "</td>";
+                        // report.push(
+                        //
+                        // );
+                    }
+
+                    sub_departments += "<tr id='" + sub_department + "'>" + "<td id='" + sub_department + "'>" + sub_department + "</td>" + reports + "</tr>";
+                }
+
+                department +=  sub_departments;
+
+            }
+            // console.log(department);
+
+            $( "<tbody/>", {
+                "id": "table-head-report-department",
+                html: department
+            }).appendTo( "#table" );
+
+        });
+        // showData.text('Loading the JSON file.');
+        // });
+
+
+        function exportTableToCSV($table, filename) {
+
+            var $rows = $table.find('tr:has(td)'),
+
+                // Temporary delimiter characters unlikely to be typed by keyboard
+                // This is to avoid accidentally splitting the actual contents
+                tmpColDelim = String.fromCharCode(11), // vertical tab character
+                tmpRowDelim = String.fromCharCode(0), // null character
+
+                // actual delimiter characters for CSV format
+                colDelim = '","',
+                rowDelim = '"\r\n"',
+
+                // Grab text from table into CSV formatted string
+                csv = '"' + $rows.map(function (i, row) {
+                    var $row = $(row),
+                        $cols = $row.find('td');
+
+                    return $cols.map(function (j, col) {
+                        var $col = $(col),
+                            text = $col.text();
+
+                        return text.replace(/"/g, '""'); // escape double quotes
+
+                    }).get().join(tmpColDelim);
+
+                }).get().join(tmpRowDelim)
+                    .split(tmpRowDelim).join(rowDelim)
+                    .split(tmpColDelim).join(colDelim) + '"',
+
+                // Data URI
+                csvData = 'data:application/csv;charset=utf-8,' + encodeURIComponent(csv);
+
+            $(this)
+                .attr({
+                'download': filename,
+                    'href': csvData,
+                    'target': '_blank'
+            });
+        }
+
+        // This must be a hyperlink
+        $(".export").on('click', function (event) {
+            // CSV
+            exportTableToCSV.apply(this, [$('#dvData>table'), 'export.csv']);
+
+            // IF CSV, don't do event.preventDefault() or return false
+            // We actually need this to be a typical hyperlink
+        });
+    });
+</script>
+{% endblock %}
+
+
+name
+actbr_u
+actbr_val
+pinbr_val
+pinbr_per
+pin_market_per
+lwbr_val
+lwbr_per
+lw_market_per
+lybr_val
+lybr_per
+ly_market
+w_lift_req
+brsls
+br_stk
+br_space
+market_sls
+market_stk
+market_space
+act_ft
+br_ft
+market_ft
+stok_br_u
+stok_actbr_u
+stok_actbr_cover
+stok_act_market_cover

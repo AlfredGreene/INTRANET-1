@@ -45,3 +45,9 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+.env
+.pyc
+
+
+/migrations
+/__pycache__
