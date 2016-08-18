@@ -2,6 +2,7 @@ from django.db import models
 
 
 class Organization(models.Model):
+
     name = models.CharField(max_length=144)
     legal_name = models.CharField(max_length=144)
     ruc = models.IntegerField( null=True, blank=True)
@@ -10,6 +11,7 @@ class Organization(models.Model):
         return self.name
 
     class Meta:
+
         verbose_name = ('Organization')
         verbose_name_plural = ('Organizations')
         permissions = (
