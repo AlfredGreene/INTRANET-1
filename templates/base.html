@@ -36,22 +36,27 @@
 
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
-                    {% if user.is_anonymous %}
-                        <li><a href="{% url 'Login' %}">ENTRAR</a></li>
-                        <li><a href="{% url 'Register' %}">REGISTRARSE</a></li>
-                    {% else %}
+            {% if user.is_anonymous %}
+
+                    <li><a href="{% url 'Login' %}">ENTRAR</a></li>
+                    <li><a href="{% url 'Register' %}">REGISTRARSE</a></li>
+
+            {% else %}
 
                     <li class=""><a href="{% url 'Dashboard' %}">DASHBOARD</a></li>
-                        {% for group in user.groups.all %}
-                            {% if group.name == 'IT' %}
-                                <li class=""><a href="{% url 'Inventario' %}">INVENTARIO</a></li>
-                            {% endif %}
-                        {% endfor %}
 
-                        <li class=""><a href="{% url 'Report' %}">REPORTES</a></li>
-                        <li class=""><a href="{% url 'Ticket' %}">TICKETS</a></li>
-                        <li><a href="{% url 'Logout' %}">SALIR</a></li>
-                    {% endif %}
+            {% for group in user.groups.all %}
+                {% if group.name == 'IT' %}
+
+                    <li class=""><a href="{% url 'Inventario' %}">INVENTARIO</a></li>
+
+                {% endif %}
+            {% endfor %}
+
+                    <li class=""><a href="{% url 'Report' %}">REPORTES</a></li>
+                    <li class=""><a href="{% url 'Ticket' %}">TICKETS</a></li>
+                    <li><a href="{% url 'Logout' %}">SALIR</a></li>
+            {% endif %}
                 </ul>
             </div><!--/.nav-collapse -->
         </div><!--/.container-fluid -->
