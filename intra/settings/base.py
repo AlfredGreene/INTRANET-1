@@ -118,10 +118,6 @@ AUTHENTICATION_BACKENDS =(
                             'django.contrib.auth.backends.ModelBackend',
                             'local_apps.profiles.EmailBackend.EmailBackend',
                         )
-if DEBUG == True:
-    DJANGO_SETTINGS_MODULE = 'intra.settings.base'
-else:
-    DJANGO_SETTINGS_MODULE = 'intra.settings.production'
 
 LOGIN_URL = '/entrar/'
 LOGIN_REDIRECT_URL = '/'
