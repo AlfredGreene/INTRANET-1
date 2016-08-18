@@ -36,6 +36,7 @@ def logout(request):
 	auth.logout(request)
 	return redirect('/')
 
+
 def register(request):
 
 	if request.method == 'GET':
@@ -51,4 +52,4 @@ def register(request):
 		auth.models.User.objects.create_user(username,email,password).save()
 		user = auth.authenticate(username = username, password = password)
 		auth.login(request, user)
-		return render(request, 'auth/registered.html',{'title':'Registrarse'})
+		return render(request, 'frontend/index.html',{'title':'registro satisfactorio'})
