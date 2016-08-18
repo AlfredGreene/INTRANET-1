@@ -1,1 +1,7 @@
-<p>hola</p>
+{% extends 'base.html' %}
+
+{% block content %}
+    <p>Disculpe las molestias, pero su usuario <a href="">{{user.first_name}})</a> no tiene permiso para ver este contenido.</p>
+    <br>
+    <p>Por favor contactar al equipo de sistemas.</p>
+{% endblock %}
