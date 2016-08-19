@@ -10,6 +10,7 @@ import datetime
 
 from local_apps.reports import bwt
 
+
 @login_required
 def report(request):
 
@@ -18,6 +19,7 @@ def report(request):
     })
 
 
+@login_required
 def topshop_reports(request):
 
     return render(request, 'reports/topshop/reports-topshop.html', {
@@ -25,11 +27,8 @@ def topshop_reports(request):
     })
 
 
+@login_required
 def report_bwt(request):
-
-    return render(request, 'reports/topshop/bwt.html', {
-        'title': 'BWT Reporte',
-    })
 
     # report = json.loads(bwt.bwt_report('2016-07-03', '2016-07-09'))
     # data = json.dumps(report, sort_keys = True, indent = 4)
@@ -39,6 +38,10 @@ def report_bwt(request):
     #     }
     # # return HttpResponse(report, content_type='application/json')
     # return render(request, , context)
+    return render(request, 'reports/topshop/bwt.html', {
+        'title': 'BWT Reporte',
+    })
+
 
 @login_required
 def json_report_bwt(request):
