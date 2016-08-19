@@ -118,11 +118,10 @@ AUTHENTICATION_BACKENDS =(
                             'django.contrib.auth.backends.ModelBackend',
                             'local_apps.profiles.EmailBackend.EmailBackend',
                         )
-
 LOGIN_URL = '/entrar/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = 'http://phoenixworldtrade.com/'
-SESSION_COOKIE_AGE = 86400
+SESSION_COOKIE_AGE = 43200
 SESSION_COOKIE_NAME = 'session'
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
