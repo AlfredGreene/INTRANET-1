@@ -8,10 +8,11 @@ from local_apps.brands.models import Brand
 
 class Brand_Report(models.Model):
 
+    name = models.CharField(max_length=40)
     brand_associated = models.ForeignKey(Brand)
 
     def __str__(self):
-        return self.brand_associated
+        return self.name
 
     class Meta:
         verbose_name = ('Brand Report')

@@ -8,5 +8,5 @@ class ReportAdmin(admin.ModelAdmin):
 
 @admin.register(Brand_Report)
 class Brand_ReportAdmin(admin.ModelAdmin):
-    fields = ('brand_associated',)
-    list_display = ('brand_associated',)
+    fields = ('name','brand_associated',)
+    list_display = ('name','brand_associated',)
