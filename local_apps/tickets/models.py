@@ -2,7 +2,25 @@ import datetime
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 
+from local_apps.profiles.models import Employee
+
+class SupportGroup(models.Model):
+
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = ('Support Group')
+        verbose_name_plural = ('Support Groups')
+        permissions = (
+            ("can_create_ticket", "Can create ticket"),
+            ("can_delete_ticket", "Can delete ticket"),
+            ("can_update_ticket", "Can update ticket"),
+        )
 
 class Ticket(models.Model):
 
@@ -23,13 +41,15 @@ class Ticket(models.Model):
 
     DATE_NOW = datetime.datetime.now()
 
-    # TICKET_NUMBER_ID = Ticket.objects.latest('id')
+    # def ticket_identifer(self):
+    #     TICKET_NUMBER_ID = Ticket.objects.latest('id')
     # TICKET_NUMBER_IDENTIFER = TICKET_NUMBER_ID + 1
 
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(Employee)
+    assigned_to = models.OneToOneField(SupportGroup)
     subject = models.CharField(max_length=144)
     message = models.TextField(max_length=700)
-    ticket_number = models.IntegerField(blank=True)
+    ticket_number = models.IntegerField(blank=True,default=1)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
     priority = models.IntegerField(choices=PRIORITY_CHOICES, default=1)
     created = models.DateTimeField(default=DATE_NOW)
@@ -37,7 +57,7 @@ class Ticket(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return self.subject
 
     class Meta:
         verbose_name = ('Ticket')

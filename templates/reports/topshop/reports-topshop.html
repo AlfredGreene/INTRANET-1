@@ -1,7 +1,7 @@
 {% extends 'frontend/report.html' %}
-
+{% load staticfiles %}
 {% block links %}
-
+    <link rel="stylesheet" href="{% static 'base/css/datepicker.css' %}">
 {% endblock %}
 
 {% block report %}
@@ -92,13 +92,20 @@
 </div>
 {% endblock %}
 
-{% block script %}
+{% block js %}
+<script src="{% static 'base/js/bootstrap-datepicker.js' %}"></script>
+
 <script type="text/javascript">
 
 $('#myTabs a').click(function (e) {
     e.preventDefault()
     $(this).tab('show')
 })
+
+$('.datepicker').datepicker({
+    format: 'yyyy-mm-dd',
+    startDate: '-3d'
+});
 
 </script>
 {% endblock %}
