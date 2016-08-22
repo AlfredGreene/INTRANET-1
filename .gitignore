@@ -50,6 +50,8 @@ Temporary Items
 
 
 */migrations
+local_apps/*/migrations
+*/local_apps/*/migrations
 
 __pycache__
 */__pycache__
@@ -63,6 +65,7 @@ __pycache__*
 */*/*/*__pycache__*
 
 migrations
+*/migrations
 */migrations
 */*/migrations
 */*/*migrations
