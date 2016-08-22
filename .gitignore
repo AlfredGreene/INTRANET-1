@@ -51,14 +51,17 @@ Temporary Items
 
 */migrations
 
-__pycache__
-*/__pycache__
-*/*/__pycache__
-*/*/*/__pycache__
+__pycache__*
+*/__pycache__*
+*/*/__pycache__*
+*/*/*/__pycache__*
+*/*/*/*__pycache__*
 
 migrations
 */migrations
 */*/migrations
+*/*/*migrations
+*/*/*/*migrations
 */*/*/*/*migrations
 
 *.pyc
