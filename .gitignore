@@ -50,7 +50,7 @@ Temporary Items
 
 
 */migrations
-local_apps/*/migrations
+/local_apps/*/migrations
 */local_apps/*/migrations
 
 __pycache__
