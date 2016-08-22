@@ -32,8 +32,8 @@ class SO(models.Model):
 
     class Meta:
 
-        verbose_name = ('Red SO')
-        verbose_name_plural = ('Red SO')
+        verbose_name = ('SO')
+        verbose_name_plural = ('SO')
         permissions = (
             ("can_create_SO", "Can create SO"),
             ("can_delete_SO", "Can delete SO"),

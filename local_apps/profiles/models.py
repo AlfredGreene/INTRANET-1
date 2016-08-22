@@ -18,9 +18,11 @@ class ProfileType(models.Model):
             ("can_delete_profile", "Can delete profile"),
             ("can_update_profile", "Can update profile"),
             ("is_office_user", "Is an user from the office"),
+            ("is_office_provider", "Is an office provider"),
             ("is_store_user", "Is an user from an store"),
             ("is_store_provider", "Is an provider"),
         )
+
 
 
 class Employee(models.Model):
@@ -30,15 +32,17 @@ class Employee(models.Model):
         (2,('Mujer')),
     )
 
-    name = models.CharField(max_length=50)
+    first_name = models.CharField(max_length=50)
+    last_name = models.CharField(max_length=50)
     bio = models.TextField(max_length=200, blank=True)
     genre = models.IntegerField(choices=GENRE_CHOICE,default=1)
-    profile = models.ForeignKey(ProfileType)
-
+    profiletype = models.ForeignKey(ProfileType)
+    avatar = models.ImageField(upload_to="user/profile/avatar",blank=True)
+    birthday = models.DateField(auto_now=False, blank=True)
 
     def __str__(self):
 
-        return self.name
+        return self.first_name
 
     class Meta:
 

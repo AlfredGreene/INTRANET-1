@@ -11,5 +11,5 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Employee)
 class EmployeeAdmin(admin.ModelAdmin):
-    fields = ('name','bio','genre','profile',)
-    list_display = ('name','bio','genre','profile',)
+    fields = ('first_name','last_name','bio','genre','profiletype','avatar','birthday')
+    list_display = ('first_name','last_name','bio','genre','profiletype','avatar','birthday')
