@@ -49,31 +49,11 @@ Temporary Items
 .pyc
 
 
-*/migrations
-/local_apps/*/migrations
-*/local_apps/*/migrations
+**/migrations
+**/migrations/*
 
-__pycache__
-*/__pycache__
-*/*/__pycache__
-*/*/*/__pycache__
-*/*/*/*__pycache__
-__pycache__*
-*/__pycache__*
-*/*/__pycache__*
-*/*/*/__pycache__*
-*/*/*/*__pycache__*
+**/__pycache__
+**/__pycache__/*
 
-migrations
-*/migrations
-*/migrations
-*/*/migrations
-*/*/*migrations
-*/*/*/*migrations
-*/*/*/*/*migrations
 
-*.pyc
-*/*.pyc
-*/*/*.pyc
-*/*/*/*.pyc
-*/*/*/*/*.pyc
+**.pyc
