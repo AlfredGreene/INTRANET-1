@@ -52,7 +52,7 @@ class Ticket(models.Model):
     ticket_number = models.IntegerField(blank=True,default=1)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
     priority = models.IntegerField(choices=PRIORITY_CHOICES, default=1)
-    created = models.DateTimeField(default=DATE_NOW)
+    created = models.DateTimeField(default=timezone.now)
     print_screen = models.ImageField(upload_to='ticket/prtscr/', null=True, blank=True)
 
 

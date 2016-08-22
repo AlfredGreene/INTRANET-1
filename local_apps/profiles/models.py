@@ -42,7 +42,7 @@ class Employee(models.Model):
     genre = models.IntegerField(choices=GENRE_CHOICE,default=1)
     profiletype = models.ForeignKey(ProfileType)
     avatar = models.ImageField(upload_to="user/profile/avatar",blank=True)
-    bday = models.DateTimeField(default=timezone.now())
+    bday = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
 
