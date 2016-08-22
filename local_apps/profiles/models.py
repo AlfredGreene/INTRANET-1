@@ -38,11 +38,11 @@ class Employee(models.Model):
 
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
-    bio = models.TextField(max_length=200, blank=True)
-    genre = models.IntegerField(choices=GENRE_CHOICE,default=1)
-    profiletype = models.ForeignKey(ProfileType)
-    avatar = models.ImageField(upload_to="user/profile/avatar",blank=True)
-    bday = models.DateTimeField(default=timezone.now)
+    # bio = models.TextField(max_length=200, blank=True)
+    # genre = models.IntegerField(choices=GENRE_CHOICE,default=1)
+    # profiletype = models.ForeignKey(ProfileType)
+    # avatar = models.ImageField(upload_to="user/profile/avatar",blank=True)
+    # bday = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
 
