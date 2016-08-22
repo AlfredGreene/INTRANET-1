@@ -1,3 +1,4 @@
+import datetime
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -32,13 +33,15 @@ class Employee(models.Model):
         (2,('Mujer')),
     )
 
+    DATE_NOW = datetime.datetime.now()
+
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     bio = models.TextField(max_length=200, blank=True)
     genre = models.IntegerField(choices=GENRE_CHOICE,default=1)
     profiletype = models.ForeignKey(ProfileType)
     avatar = models.ImageField(upload_to="user/profile/avatar",blank=True)
-    birthday = models.DateField(auto_now=False, blank=True)
+    birthday = models.DateTimeField(default=DATE_NOW, blank=True)
 
     def __str__(self):
 
