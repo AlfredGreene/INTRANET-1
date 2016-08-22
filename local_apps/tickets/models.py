@@ -41,10 +41,6 @@ class Ticket(models.Model):
 
     DATE_NOW = datetime.datetime.now()
 
-    # def ticket_identifer(self):
-    #     TICKET_NUMBER_ID = Ticket.objects.latest('id')
-    # TICKET_NUMBER_IDENTIFER = TICKET_NUMBER_ID + 1
-
     author = models.ForeignKey(Employee)
     assigned_to = models.OneToOneField(SupportGroup)
     subject = models.CharField(max_length=144)
@@ -52,7 +48,6 @@ class Ticket(models.Model):
     ticket_number = models.IntegerField(blank=True,default=1)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
     priority = models.IntegerField(choices=PRIORITY_CHOICES, default=1)
-    created = models.DateTimeField(default=timezone.now)
     print_screen = models.ImageField(upload_to='ticket/prtscr/', null=True, blank=True)
 
 
