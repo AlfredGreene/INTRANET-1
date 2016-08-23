@@ -1,4 +1,5 @@
 from decouple import config
+from intra.settings.base import DEBUG
 import pyodbc
 import datetime
 import json
@@ -6,8 +7,11 @@ import json
 def bwt_report(args,kwargs):
 
     def sql_conn(arg):
-        
-        conn = config('TOPSHOP_BWT')
+
+        if DEBUG:
+            conn = config('BWT')
+        else:
+            conn = config('BWT')
         connection = pyodbc.connect(conn)
         cursor = connection.cursor()
         SQLCommand =(arg)
