@@ -51,7 +51,7 @@
     </div>
 
 </div>
-<p>{{date_to}}</p>
+
 <a href="#" class="export">Export Table data into Excel</a>
 <div id="show-data"></div>
 {% endblock %}
@@ -61,21 +61,12 @@
 <script>
     $(document).ready(function () {
     /* global Variables */
-    var data = {{data}}
-
-    // $.ajax({
-        // type: "POST",
-        // url: url,
-    //     date_from: '{{date_from}}',
-    //     date_to: '{{date_to}}',
-    //     success: '#get-data',
-    //     dataType: 'json',
-    // });
+    var url = '{% url "TopshopJsonBWT" %}';
     // $('#get-data').click(function () {
 
         // var showData = $('#show-data');
 
-        // $.post( url, (date_from,date_to) , function( data ) {
+        $.getJSON( url, function( data ) {
 
             console.log(data);
             // $.each( data, function( department ) {
@@ -145,7 +136,7 @@
                 html: department
             }).appendTo( "#table" );
 
-        // }, 'json');
+        });
         // showData.text('Loading the JSON file.');
         // });
 
