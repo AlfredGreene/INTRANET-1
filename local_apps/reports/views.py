@@ -42,18 +42,15 @@ def report_bwt(request):
         data = json.dumps(report, sort_keys = True, indent = 4)
         # report = json.loads(bwt.bwt_report('2016-07-03', '2016-07-09'))
         # data = json.dumps(report, sort_keys = True, indent = 4)
-        # context = {
-        #     'data':data,
-        #     'title': 'reporte bwt',
-        #     }
-        # # return HttpResponse(report, content_type='application/json')
-        # return render(request, , context)
-        return render(request, 'reports/topshop/bwt.html', {
+        context = {
             'title': 'BWT Reporte',
             'date_from':date_from,
             'date_to':date_to,
             'data':data,
-        })
+        }
+        # # return HttpResponse(report, content_type='application/json')
+        # return render(request, , context)
+        return render(request, 'reports/topshop/bwt.html', context )
 
 
 @login_required
