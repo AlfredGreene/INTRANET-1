@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.core.mail import send_mail
+from decouple import config
 
 def login(request):
 
 	if request.method == 'GET':
 		return render(request, 'auth/login.html',{'title':'Iniciar Sesión'})
 	elif request.method == 'POST':
+
 		username = request.POST['username']
 		password = request.POST['password']
+
 		user = auth.authenticate( username = username, password = password)
 		if user is not None:
 			if user.is_active:
@@ -22,12 +26,12 @@ def login(request):
 				return redirect(next)
 			else:
 				return render(request, 'auth/login.html', {
-						'warning': 'Your account is disabled.',
+						'warning': 'Su cuenta ha caducado.',
 						'title':'Iniciar Sesión',
 					})
 		else:
 			return render(request, 'auth/login.html',{
-					'warning': 'Invalid username or password',
+					'warning': 'Usuario o contraseña erronea',
 					'title':'Iniciar Sesión',
 				})
 
@@ -40,10 +44,11 @@ def logout(request):
 def register(request):
 
 	if request.method == 'GET':
-		return render(request, 'auth/register.html',{'title':'Registrarse'})
+
+		return render(request, 'auth/register.html',{'title':'Error al Registrarse'})
+
 	elif request.method == 'POST' :
-		first_name = request.POST['first_name']
-		last_name = request.POST['last_name']
+
 		username = request.POST['username']
 		email = request.POST['email']
 		password = request.POST['password']
@@ -52,4 +57,13 @@ def register(request):
 		auth.models.User.objects.create_user(username,email,password).save()
 		user = auth.authenticate(username = username, password = password)
 		auth.login(request, user)
-		return render(request, 'frontend/index.html',{'title':'registro satisfactorio'})
+
+		send_mail(
+		            'Registro de usuario',
+		            '%s, %s' % (username,email) ,
+		            config("INTRA_EMAIL_HOST_USER",),
+		            [config("INTRA_EMAIL_HOST_USER",)],
+		            fail_silently=False,
+		        )
+				
+		return render(request, 'auth/registered.html',{'title':'registro satisfactorio'})

@@ -30,26 +30,43 @@ def topshop_reports(request):
 @login_required
 def report_bwt(request):
 
-    # report = json.loads(bwt.bwt_report('2016-07-03', '2016-07-09'))
-    # data = json.dumps(report, sort_keys = True, indent = 4)
-    # context = {
-    #     'data':data,
-    #     'title': 'reporte bwt',
-    #     }
-    # # return HttpResponse(report, content_type='application/json')
-    # return render(request, , context)
-    return render(request, 'reports/topshop/bwt.html', {
-        'title': 'BWT Reporte',
-    })
+    if request.method == 'GET':
+
+        return render(request, 'reports/topshop/reports-topshop.html', {'title':'Error!'} )
+
+    elif request.method == 'POST':
+
+        date_from = request.POST['date_from']
+        date_to = request.POST['date_to']
+        report = json.loads(bwt.bwt_report(date_from, date_to))
+        data = json.dumps(report, sort_keys = True, indent = 4)
+        # report = json.loads(bwt.bwt_report('2016-07-03', '2016-07-09'))
+        # data = json.dumps(report, sort_keys = True, indent = 4)
+        # context = {
+        #     'data':data,
+        #     'title': 'reporte bwt',
+        #     }
+        # # return HttpResponse(report, content_type='application/json')
+        # return render(request, , context)
+        return render(request, 'reports/topshop/bwt.html', {
+            'title': 'BWT Reporte',
+            'date_from':date_from,
+            'date_to':date_to,
+            'data':data,
+        })
 
 
 @login_required
 def json_report_bwt(request):
 
-    report = json.loads(bwt.bwt_report('2016-07-03', '2016-07-09'))
-    data = json.dumps(report, sort_keys = True, indent = 4)
-    # context =
-    # return HttpResponse(report, content_type='application/json')
-    return HttpResponse({
-        data
-        }, content_type='application/json')
+    if request.method == 'GET':
+        return render(request, 'reports/topshop.html',{'title':'Error!'})
+
+    if request.method == 'POST':
+
+        date_from = request.POST['date_from']
+        date_to = request.POST['date_to']
+
+        # context =
+        # return HttpResponse(report, content_type='application/json')
+        return HttpResponse({data}, content_type='application/json')

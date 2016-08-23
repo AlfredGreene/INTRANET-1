@@ -36,7 +36,7 @@
 
             <div role="tabpanel" class="tab-pane active" id="BWT">
                 <br>
-                <form id="eventForm" method="post" class="form-horizontal">
+                <form id="eventForm" method="post" action="{% url 'TopshopBWT' %}" class="form-horizontal">
                     {% csrf_token %}
                     <div class="form-group">
                         <label class="col-xs-3 control-label">Fecha "inicio"</label>

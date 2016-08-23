@@ -61,12 +61,21 @@
 <script>
     $(document).ready(function () {
     /* global Variables */
-    var url = '{% url "TopshopJsonBWT" %}';
+    var data = {{data}}
+
+    // $.ajax({
+        // type: "POST",
+        // url: url,
+    //     date_from: '{{date_from}}',
+    //     date_to: '{{date_to}}',
+    //     success: '#get-data',
+    //     dataType: 'json',
+    // });
     // $('#get-data').click(function () {
 
         // var showData = $('#show-data');
 
-        $.getJSON( url, function( data ) {
+        // $.post( url, (date_from,date_to) , function( data ) {
 
             console.log(data);
             // $.each( data, function( department ) {
@@ -136,7 +145,7 @@
                 html: department
             }).appendTo( "#table" );
 
-        });
+        // }, 'json');
         // showData.text('Loading the JSON file.');
         // });
 
