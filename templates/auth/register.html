@@ -40,4 +40,28 @@
 	<div class="register" >
 		<p>¿Ya está registrado? <a href="{% url 'Login' %}">Entrar</a></p>
 	</div>
+
+	<div id="myModal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+
+		<div class="modal-dialog modal-sm" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">ERROR!</h4>
+				</div>
+				<div class="modal-body">
+					<p>{{error.email}}</p>
+					<p>{{error.contacto}}</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+$(document).ready(function () {
+	$('.bs-example-modal-sm').modal('{{error.error}}')
+)};
+</script>
 {% endblock %}

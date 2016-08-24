@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.core.mail import send_mail
 from decouple import config
+from django.contrib.auth.decorators import user_passes_test
 
 def login(request):
 
@@ -45,14 +46,27 @@ def register(request):
 
 	if request.method == 'GET':
 
-		return render(request, 'auth/register.html',{'title':'Registro'})
+		return render(request, 'auth/register.html',{
+			'title':'Registro',
+			'error':{
+				'error':'hide',
+			}
+		})
 
 	elif request.method == 'POST' :
 
 		username = request.POST['username']
 		email = request.POST['email']
 		password = request.POST['password']
-
+		if not email.endswith('@example.com'):
+			return render(request, 'auth/register.html',{
+				'title':'Error de Registro',
+				'error':{
+					'error':'show',
+					'email':'Su correo debe terminar en "@phoenixwt.com.pa"',
+					'contacto':'Por favor contactar al administrador de sistemas, soporte@phoenixwt.com.pa'
+				}
+			})
 		# LLamamos al formulario de usuario desde el ORM.
 		auth.models.User.objects.create_user(username,email,password).save()
 		user = auth.authenticate(username = username, password = password)

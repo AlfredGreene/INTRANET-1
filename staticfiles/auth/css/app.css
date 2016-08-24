@@ -15,12 +15,11 @@ body {
     width: 370px;
 }
 .login-screen {
-    /*background-color: #FFF;*/
     padding: 20px;
-    border-radius: 5px
+    border-radius: 5px;
 }
 .form-group{
-    margin-bottom: 5px
+    margin-bottom: 5px;
 }
 .app-title {
     text-align: center;
