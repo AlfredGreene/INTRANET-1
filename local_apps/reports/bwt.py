@@ -9,7 +9,7 @@ def bwt_report(args,kwargs):
     def sql_conn(arg):
 
         if DEBUG:
-            conn = config('BWT')
+            conn = config('TOPSHOP_BWT')
         else:
             conn = config('BWT')
         connection = pyodbc.connect(conn)
