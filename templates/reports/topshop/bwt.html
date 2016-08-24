@@ -53,90 +53,91 @@
 </div>
 
 <a href="#" class="export">Export Table data into Excel</a>
-<div id="show-data"></div>
+<div class="hidden">
+
+</div>
 {% endblock %}
 
 
 {% block js %}
 <script>
     $(document).ready(function () {
-    /* global Variables */
+
     var url = '{% url "TopshopJsonBWT" %}';
-    // $('#get-data').click(function () {
+    var date_from = '{{date_from}}';
+    var date_to = '{{date_to}}';
+    console.log(date_from + ' '+date_to);
+    $.getJSON( url,{date_from,date_to}, function( data ) {
+    // $.post(url,{date_from:date_from,date_to:date_to},function(data){
+        console.log(data);
+        // $.each( data, function( department ) {
+        //     // console.log(department);
+        //
+        //     $.each( data[department], function( sub_department ) {
+        //         // console.log(sub_department);
+        //
+        //         $.each( data[department][sub_department], function( report ) {
+        //
+        //             var datos = data[department][sub_department];
+        //             // console.log(report);
+        //             // report.push("<td id='" + report + "'>" + datos + "</td>");
+        //
+        //         }); /* report */
+        //
+        //         // sub_department.push("<td id='" + sub_department + "'>" + sub_department + "</td>" );
+        //     });/* sub_department */
+        //
+        //     departments.push("<tr id='" + department + "'>" + department + "</tr>");
+        // });
 
-        // var showData = $('#show-data');
+        /***/
+        var department = [];
+        var departments = [];
+        for (departments in data) {
 
-        $.getJSON( url, function( data ) {
+            /* Mostrar datos */
+            // console.log(departments);
+            // console.log(data[departments]);
+            /**/
+            var sub_department = [];
+            var sub_departments = [];
 
-            console.log(data);
-            // $.each( data, function( department ) {
-            //     // console.log(department);
-            //
-            //     $.each( data[department], function( sub_department ) {
-            //         // console.log(sub_department);
-            //
-            //         $.each( data[department][sub_department], function( report ) {
-            //
-            //             var datos = data[department][sub_department];
-            //             // console.log(report);
-            //             // report.push("<td id='" + report + "'>" + datos + "</td>");
-            //
-            //         }); /* report */
-            //
-            //         // sub_department.push("<td id='" + sub_department + "'>" + sub_department + "</td>" );
-            //     });/* sub_department */
-            //
-            //     departments.push("<tr id='" + department + "'>" + department + "</tr>");
-            // });
-
-            /***/
-            var department = [];
-            var departments = [];
-            for (departments in data) {
+            for (sub_department in data[departments]){
 
                 /* Mostrar datos */
-                // console.log(departments);
-                // console.log(data[departments]);
+                // console.log(sub_department);
+                // console.log(data[departments][sub_department]);
                 /**/
-                var sub_department = [];
-                var sub_departments = [];
+                // console.log(sub_department);
+                var report = [];
+                var reports = [];
 
-                for (sub_department in data[departments]){
+                for (report in data[departments][sub_department] ){
 
                     /* Mostrar datos */
-                    // console.log(sub_department);
-                    // console.log(data[departments][sub_department]);
+                    // console.log(report+':'+data[departments][sub_department][report]);
+                    // console.log();
                     /**/
-                    // console.log(sub_department);
-                    var report = [];
-                    var reports = [];
-
-                    for (report in data[departments][sub_department] ){
-
-                        /* Mostrar datos */
-                        // console.log(report+':'+data[departments][sub_department][report]);
-                        // console.log();
-                        /**/
-                        reports += "<td id='" + report + "'>" + data[departments][sub_department][report]  + "</td>";
-                        // report.push(
-                        //
-                        // );
-                    }
-
-                    sub_departments += "<tr id='" + sub_department + "'>" + "<td id='" + sub_department + "'>" + sub_department + "</td>" + reports + "</tr>";
+                    reports += "<td id='" + report + "'>" + data[departments][sub_department][report]  + "</td>";
+                    // report.push(
+                    //
+                    // );
                 }
 
-                department +=  sub_departments;
-
+                sub_departments += "<tr id='" + sub_department + "'>" + "<td id='" + sub_department + "'>" + sub_department + "</td>" + reports + "</tr>";
             }
-            // console.log(department);
 
-            $( "<tbody/>", {
-                "id": "table-head-report-department",
-                html: department
-            }).appendTo( "#table" );
+            department +=  sub_departments;
 
-        });
+        }
+        // console.log(department);
+
+        $( "<tbody/>", {
+            "id": "table-head-report-department",
+            html: department
+        }).appendTo( "#table" );
+
+    },'json');
         // showData.text('Loading the JSON file.');
         // });
 

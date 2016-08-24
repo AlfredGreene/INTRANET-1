@@ -65,10 +65,29 @@ def report_bwt(request):
 @login_required
 def json_report_bwt(request):
 
-    report = json.loads(bwt.bwt_report('2016-07-03', '2016-07-09'))
-    data = json.dumps(report, sort_keys = True, indent = 4)
-    # context =
-    # return HttpResponse(report, content_type='application/json')
-    return HttpResponse({
-        data
-        }, content_type='application/json')
+    if request.method == 'POST':
+
+        return render(request, 'reports/topshop/reports-topshop.html',{
+            'title':'Reportes'
+        })
+
+    elif request.method == 'GET':
+        date_from = request.GET['date_from']
+        date_to = request.GET['date_to']
+
+        if date_from == '' and date_to == '':
+            return render(request, 'reports/topshop/reports-topshop.html',{
+                'title':'Reportes',
+                'error':{
+                    'date_from':'Debe seleccionar la fecha inicial',
+                    'date_to':'Debe seleccionar la fecha final',
+                },
+            })
+
+        report = json.loads(bwt.bwt_report(date_from, date_to))
+        data = json.dumps(report, sort_keys = True, indent = 4)
+        # context =
+        # return HttpResponse(report, content_type='application/json')
+        return HttpResponse({
+            data
+            }, content_type='application/json')
