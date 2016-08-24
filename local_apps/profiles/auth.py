@@ -63,7 +63,7 @@ def register(request):
 				'title':'Error de Registro',
 				'error':{
 					'error':'show',
-					'email':'Su correo debe terminar en "@phoenixwt.com.pa"',
+					'email':'Su correo debe "%s" no terminar en "@phoenixwt.com.pa"' % email,
 					'contacto':'Por favor contactar al administrador de sistemas, soporte@phoenixwt.com.pa'
 				}
 			})
