@@ -60,10 +60,21 @@ def register(request):
 		password1 = request.POST['password1']
 		password2 = request.POST['password2']
 
+		if username == '':
+			return render(request, 'auth/register.html',{
+				'title':'Error de Registro',
+				'error':{
+					'title':'Nombre de usuario requerido!',
+					'error':'show',
+					'email':'El campo de correo no puede estar vacio, recuerde que debe terminar en "@phoenixwt.com.pa"',
+					'contacto':'Por favor contactar al administrador de sistemas, soporte@phoenixwt.com.pa'
+				}
+			})
 		if email == '':
 			return render(request, 'auth/register.html',{
 				'title':'Error de Registro',
 				'error':{
+					'title':'Email requerido!',
 					'error':'show',
 					'email':'El campo de correo no puede estar vacio, recuerde que debe terminar en "@phoenixwt.com.pa"',
 					'contacto':'Por favor contactar al administrador de sistemas, soporte@phoenixwt.com.pa'
@@ -73,6 +84,7 @@ def register(request):
 			return render(request, 'auth/register.html',{
 				'title':'Error de Registro',
 				'error':{
+					'title':'Email debe ser corporativo',
 					'error':'show',
 					'email':'Su correo debe "%s" no terminar en "@phoenixwt.com.pa"' % email,
 					'contacto':'Por favor contactar al administrador de sistemas, soporte@phoenixwt.com.pa'
@@ -83,6 +95,7 @@ def register(request):
 			return render(request, 'auth/register.html',{
 				'title':'Error de Registro',
 				'error':{
+					'title':'Contraseña inconsistente',
 					'error':'show',
 					'email':'Error "%s" no es igual a "%s"' % (password1,password2),
 					'contacto':'Por favor contactar al administrador de sistemas, soporte@phoenixwt.com.pa',
@@ -103,4 +116,4 @@ def register(request):
 		            fail_silently=False,
 		        )
 
-		return render(request, 'auth/registered.html',{'title':'registro satisfactorio'})
+		return render(request, 'auth/registered.html',{'title':'registro completo'})
