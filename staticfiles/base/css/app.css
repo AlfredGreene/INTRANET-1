@@ -1,11 +1,14 @@
+.tooltip{
+    font-size: 0.8em !important;
+}
 *{
-    font-size: 18px;
 }
 
 body {
     font: 400 15px Lato, sans-serif;
     line-height: 1.8;
     color: #818181;
+    font-size: 18px;
 }
 
 /* Custom */
