@@ -57,7 +57,18 @@ def register(request):
 
 		username = request.POST['username']
 		email = request.POST['email']
-		password = request.POST['password']
+		password1 = request.POST['password1']
+		password2 = request.POST['password2']
+
+		if email == '':
+			return render(request, 'auth/register.html',{
+				'title':'Error de Registro',
+				'error':{
+					'error':'show',
+					'email':'El campo de correo no puede estar vacio, recuerde que debe terminar en "@phoenixwt.com.pa"',
+					'contacto':'Por favor contactar al administrador de sistemas, soporte@phoenixwt.com.pa'
+				}
+			})
 		if not email.endswith('@phoenixwt.com.pa'):
 			return render(request, 'auth/register.html',{
 				'title':'Error de Registro',
@@ -67,9 +78,21 @@ def register(request):
 					'contacto':'Por favor contactar al administrador de sistemas, soporte@phoenixwt.com.pa'
 				}
 			})
+
+		if not password1 == password2:
+			return render(request, 'auth/register.html',{
+				'title':'Error de Registro',
+				'error':{
+					'error':'show',
+					'email':'Error "%s" no es igual a "%s"' % (password1,password2),
+					'contacto':'Por favor contactar al administrador de sistemas, soporte@phoenixwt.com.pa',
+					'input':'has-error',
+				}
+			})
+
 		# LLamamos al formulario de usuario desde el ORM.
-		auth.models.User.objects.create_user(username,email,password).save()
-		user = auth.authenticate(username = username, password = password)
+		auth.models.User.objects.create_user(username,email,password2).save()
+		user = auth.authenticate(username = username, password = password2)
 		auth.login(request, user)
 
 		send_mail(
