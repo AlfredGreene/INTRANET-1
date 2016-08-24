@@ -58,7 +58,7 @@ def register(request):
 		username = request.POST['username']
 		email = request.POST['email']
 		password = request.POST['password']
-		if not email.endswith('@example.com'):
+		if not email.endswith('@phoenixwt.com.pa'):
 			return render(request, 'auth/register.html',{
 				'title':'Error de Registro',
 				'error':{
