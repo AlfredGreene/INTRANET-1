@@ -4,13 +4,13 @@ from .models import *
 # Register your models here.
 @admin.register(SO)
 class SOAdmin(admin.ModelAdmin):
-    fields = ('name',)
-    list_display = ('name',)
+    fields = ('name','brand')
+    list_display = ('name','brand')
 
 @admin.register(Red_Interface)
 class Red_InterfaceAdmin(admin.ModelAdmin):
-    fields = ('name',)
-    list_display = ('name',)
+    fields = ('name','public_ip','private_ip','range_ip')
+    list_display = ('name','public_ip','private_ip','range_ip')
 
 @admin.register(Equipment)
 class EquipmentAdmin(admin.ModelAdmin):

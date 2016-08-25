@@ -35,7 +35,7 @@ class Ticket(models.Model):
         (1,('Abierto')),
         (2,('Demorado')),
         (3,('Alta')),
-        (4,('Transfrido')),
+        (4,('Transferido')),
         (5,('Cerrado')),
     )
 
@@ -48,7 +48,10 @@ class Ticket(models.Model):
     ticket_number = models.IntegerField(blank=True,default=1)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
     priority = models.IntegerField(choices=PRIORITY_CHOICES, default=1)
-    print_screen = models.ImageField(upload_to='ticket/prtscr/', null=True, blank=True)
+    print_screen = models.ImageField(upload_to='tickets_prtscr', null=True, blank=True)
+    document = models.ImageField(upload_to='tickets_documents', null=True, blank=True)
+    pub_date = models.DateTimeField(default=datetime.datetime.now)
+    modified = models.DateTimeField(auto_now=True)
 
 
     def __str__(self):
@@ -67,3 +70,13 @@ class Ticket(models.Model):
             ("can_reopen_ticket", "Can reopen ticket"),
             ("can_transfer_ticket", "Can transfer ticket"),
         )
+
+# class Ticket_Reply(models.Model):
+#
+#     def __srt__(self):
+#         pass
+#
+#     class Meta:
+#         pass
+#
+#     pass

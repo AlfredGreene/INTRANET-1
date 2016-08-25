@@ -7,9 +7,11 @@ from local_apps.organization.models import Organization
 class Red_Interface(models.Model):
 
     name = models.CharField(max_length=50)
+    public_ip = models.CharField(max_length=15,blank=True)
+    private_ip = models.CharField(max_length=15,blank=True)
+    range_ip = models.CharField(max_length=3, default=24,blank=True)
 
     def __srt__(self):
-
         return self.name
 
     class Meta:
@@ -24,10 +26,10 @@ class Red_Interface(models.Model):
 
 class SO(models.Model):
 
+    brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     name = models.CharField(max_length=50)
 
     def __srt__(self):
-
         return self.name
 
     class Meta:
@@ -53,8 +55,8 @@ class Equipment(models.Model):
         (8, ('Impresora Fiscal')),
         (9, ('Impresora multifuncional')),
         (10, ('Punto de venta')),
-        (11, ('Lector de códigos de barra')),
-        (12, ('DVD')),
+        (11, ('Lector códigos de barra')),
+        (12, ('DVR')),
         (13, ('Impresora zebra')),
     )
 
@@ -78,14 +80,13 @@ class Equipment(models.Model):
     version = models.CharField(max_length=144, blank=True)
     user = models.CharField(max_length=144, blank=True)
     user_pass = models.CharField(max_length=144, blank=True)
-    sn = models.CharField(max_length=144, blank=True)
+    sn = models.CharField(max_length=144, blank=True, unique=True)
     employee = models.ForeignKey(Employee, blank=True,on_delete=models.CASCADE,)
     organization = models.ForeignKey(Organization, blank=True,on_delete=models.CASCADE,)
     status = models.IntegerField(choices=STATUS_CHOICE_FIELDS, default=1)
 
 
     def __str__(self):
-
         return self.name
 
     class Meta:

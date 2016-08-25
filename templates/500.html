@@ -1,9 +1,35 @@
-{% extends 'base.html' %}
+{% load staticfiles %}
 
-{% block content %}
-<div class="container-fluid">
-    <p>Disculpe las molestias, pero su usuario (<a href="#"> {{user.first_name }} </a>) no tiene permiso para ver este contenido.</p>
-    <br>
-    <p>Por favor contactar al equipo de sistemas.</p>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Metas -->
+    <meta name="Description" content="Intranet grupo PHOENIX WORLD TRADE">
+    <meta name="Author" content="Josmer Hernandez">
+    <title>ERROR 500 | PHOENIX WORLD TRADE</title>
+    <link rel="stylesheet" href="{% static 'auth/css/app.css' %}">
+    <!-- Custom Styles -->
+    {% block assets %}
+    <style media="screen">
+        body{
+            background-color: #ffffcc;
+        }
+    </style>
+    {% endblock %}
+</head>
+    <body>
+        <div class="login">
+        		<div class="login-screen">
+        			<div class="app-title">
+        				<h2>Error 500!</h2>
+        				<h3>Permiso denegado</h3>
+                        <a href="/">Inicio</a>
+        			</div>
+        		</div>
+        </div>
+
+    </body>
+</html>

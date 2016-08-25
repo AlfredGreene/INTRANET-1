@@ -34,17 +34,20 @@ class Employee(models.Model):
         (2,('Mujer')),
     )
 
-
+    intra_user = models.ForeignKey(User,on_delete=models.CASCADE)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     bio = models.TextField(max_length=200, blank=True)
     genre = models.IntegerField(choices=GENRE_CHOICE,default=1)
     profiletype = models.ForeignKey(ProfileType,on_delete=models.CASCADE,)
-    avatar = models.ImageField(upload_to="user/profile/avatar",blank=True)
+    avatar = models.ImageField(upload_to="user_profile_avatar",blank=True)
 
     def __str__(self):
 
-        return self.first_name
+        return self.user_name()
+
+    def user_name(self):
+        return '%s %s' % (self.first_name,self.last_name)
 
     class Meta:
 

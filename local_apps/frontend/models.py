@@ -11,7 +11,7 @@ class Documentation(models.Model):
     name = models.CharField(max_length=140)
     title = models.CharField(max_length=140, blank=True)
     description = models.TextField(blank=True)
-    document = models.FileField(upload_to='/document/frontend')
+    document = models.FileField(upload_to='documents_frontend')
 
     def __str__(self):
 

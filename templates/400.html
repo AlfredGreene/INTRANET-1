@@ -1,0 +1,36 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html class="no-js" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- Metas -->
+    <meta name="Description" content="Intranet grupo PHOENIX WORLD TRADE">
+    <meta name="Author" content="Josmer Hernandez">
+    <title>ERROR 400 | PHOENIX WORLD TRADE</title>
+    <link rel="stylesheet" href="{% static 'auth/css/app.css' %}">
+    <!-- Custom Styles -->
+    {% block assets %}
+    <style media="screen">
+        body{
+            background-color: #669900;
+            color: #fff
+        }
+    </style>
+    {% endblock %}
+</head>
+    <body>
+        <div class="login">
+        		<div class="login-screen">
+        			<div class="app-title">
+        				<h2>ERROR 400!</h2>
+        				<h3>Busqueda no encontrada</h3>
+                        <a href="/">Inicio</a>
+        			</div>
+        		</div>
+        </div>
+
+    </body>
+</html>
