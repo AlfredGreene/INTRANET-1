@@ -1,14 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.files.storage import FileSystemStorage
 
 # Create your models here.
+
+
 class Documentation(models.Model):
 
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(User,on_delete=models.CASCADE,)
     name = models.CharField(max_length=140)
     title = models.CharField(max_length=140, blank=True)
     description = models.TextField(blank=True)
-    document = models.FileField(upload_to='documents/')
+    document = models.FileField(upload_to='/document/frontend')
 
     def __str__(self):
 

@@ -9,7 +9,7 @@ from local_apps.brands.models import Brand
 class Brand_Report(models.Model):
 
     name = models.CharField(max_length=40)
-    brand_associated = models.ForeignKey(Brand)
+    brand_associated = models.ForeignKey(Brand,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -36,7 +36,7 @@ class Report(models.Model):
     description = models.TextField(max_length=200, blank=True)
     has_date_from = models.BooleanField(default=False)
     has_date_to = models.BooleanField(default=False)
-    brand = models.ForeignKey(Brand_Report)
+    brand = models.ForeignKey(Brand_Report,on_delete=models.CASCADE)
     status = models.IntegerField(choices=STATUS_CHOICES, default=1)
 
     def __str__(self):

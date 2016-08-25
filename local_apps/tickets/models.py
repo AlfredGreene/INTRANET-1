@@ -41,7 +41,7 @@ class Ticket(models.Model):
 
     DATE_NOW = datetime.datetime.now()
 
-    author = models.ForeignKey(Employee)
+    author = models.ForeignKey(Employee,on_delete=models.CASCADE,)
     assigned_to = models.OneToOneField(SupportGroup)
     subject = models.CharField(max_length=144)
     message = models.TextField(max_length=700)

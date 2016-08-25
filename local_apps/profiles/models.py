@@ -39,7 +39,7 @@ class Employee(models.Model):
     last_name = models.CharField(max_length=50)
     bio = models.TextField(max_length=200, blank=True)
     genre = models.IntegerField(choices=GENRE_CHOICE,default=1)
-    profiletype = models.ForeignKey(ProfileType)
+    profiletype = models.ForeignKey(ProfileType,on_delete=models.CASCADE,)
     avatar = models.ImageField(upload_to="user/profile/avatar",blank=True)
 
     def __str__(self):
