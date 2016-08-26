@@ -1,0 +1,21 @@
+{% extends 'frontend/ticket.html' %}
+{% block content %}
+
+<div class="col-xs-12 col-md-12">
+    <div class="thumbnail phx-ticket-thumbnail">
+        <h2>{{ticket.author}}</h2>
+        <h3>{{ticket.subject}}</h3>
+        <p>{{ticket.message}}</p>
+        <p><a class="label label-info left" href="#" role="button">{{ticket.pub_date}}</a><a class="label label-info left" href="#" role="button">{{ticket.status}}</a></p>
+        <p></p>
+    </div>
+</div>
+
+{% endblock %}
+
+sudo openssl req -x509 -nodes -days 365 -newkey rsa:4096 -keyout /etc/ssl/private/ss-nginx-dev2tech.key -out /etc/ssl/certs/ss-nginx-dev2tech.crt
+
+cd /etc/ssl/certs
+openssl dhparam -out dhparam.pem 4096
+
+ssl_protocols TLSv1 TLSv1.1 TLSv1.2;

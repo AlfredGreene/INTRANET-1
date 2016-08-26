@@ -2,7 +2,26 @@
 
 {% block content %}
 <div class="container-fluid">
-    <a href="{% url 'Home' %}">Regresar al home</a>
-    <p>Este es el bloque de los tickets</p>
-</div>
+
+
+    <div class="row">
+
+        <a href="{% url 'Home' %}">Regresar al home</a>
+        <p>Este es el bloque de los tickets</p>
+
+    </div>
+    <div class="row">
+    {% for ticket in tickets %}
+        <div class="col-xs-12 col-md-12">
+            <div class="thumbnail phx-ticket-thumbnail">
+                <h2>{{ticket.author}}</h2>
+                <h3>{{ticket.subject}}</h3>
+                <p>{{ticket.message}}</p>
+                <p><a class="label label-info left" href="#" role="button">{{ticket.pub_date}}</a><a class="label label-info left" href="#" role="button">{{ticket.status}}</a></p>
+                <p></p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+
 {% endblock %}
