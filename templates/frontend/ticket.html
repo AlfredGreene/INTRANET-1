@@ -17,8 +17,25 @@
                 <h2>{{ticket.author}}</h2>
                 <h3>{{ticket.subject}}</h3>
                 <p>{{ticket.message}}</p>
-                <p><a class="label label-info left" href="#" role="button">{{ticket.pub_date}}</a><a class="label label-info left" href="#" role="button">{{ticket.status}}</a></p>
-                <p></p>
+                <p>
+                    <a class="label label-info left" href="#" role="button">
+                        Creado: {{ticket.pub_date}}
+                    </a>
+                </p>
+                <p>
+                    {% if ticket.status == 1 %}
+                    <a class="label label-info rigth" href="#" role="button">Abierto
+                    {% elif ticket.status == 2 %}
+                    <a class="label label-warning rigth" href="#" role="button">Demorado
+                    {% elif ticket.status == 3 %}
+                    <a class="label label-success rigth" href="#" role="button">Alta
+                    {% elif ticket.status == 4 %}
+                    <a class="label label-primary rigth" href="#" role="button">Transferido
+                    {% elif ticket.status == 5 %}
+                    <a class="label label-default rigth" href="#" role="button">Cerrado
+                    {% endif %}
+                    </a>
+                </p>
             </div>
         </div>
     {% endfor %}
